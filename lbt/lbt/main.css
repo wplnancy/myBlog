@@ -1,0 +1,68 @@
+html, body, ul, li {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+html {
+    font-size: 100px;
+}
+
+ul {
+    list-style: none;
+}
+
+.banner {
+    width: 100%;
+    height: 3.5rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.banner .wrapper {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    height: 100%;
+}
+
+.banner .wrapper .slide {
+    height: 100%;
+    float: left;
+    background-color: #EEEEEE;
+    /*只是图片没有展现的时候可以展现一个背景颜色*/
+}
+
+.banner .wrapper .slide img {
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+
+.tip {
+    position: absolute;
+    width: 100%;
+    height: 0.16rem;
+    left: 0;
+    bottom: 0.1rem;
+    text-align: center;
+}
+
+.tip > li {
+    display: inline-block;
+    width: .16rem;
+    height: .16rem;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background-color: yellow;
+    vertical-align: top;
+}
+
+.tip > li + li {
+    margin-left: 0.1rem;
+}
+
+.tip .bg {
+    background-color: #0000AA;
+}
