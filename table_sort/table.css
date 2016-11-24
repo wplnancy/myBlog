@@ -1,0 +1,40 @@
+html, body, table, tbody, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    font-family: 'Microsoft Yahei';
+}
+
+.tab {
+    width: 1000px;
+    margin: 30px auto;
+    line-height: 40px;
+    text-align: center;
+    border-collapse: collapse;
+    border:2px solid lightskyblue;
+}
+
+.tab th,
+.tab td {
+    width: 200px;
+    border: 1px solid lightskyblue;
+    -webkit-user-select: none;
+}
+
+
+.tab thead th {
+    background: greenyellow;
+}
+
+.bg0{
+    background-color: lightgoldenrodyellow;
+}
+.bg1{
+    background: lightcyan;
+}
+
+/*点击的特殊的样式*/
+
+.cursor{
+    cursor: pointer;
+}
+
