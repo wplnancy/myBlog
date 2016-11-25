@@ -9,6 +9,14 @@
 ***
 [点击访问][https://wplnancy.github.io/myBlog/lbt/lbt/]
 
-
+* 3 表格排序
+***
+[查看效果][https://wplnancy.github.io/myBlog/table_sort/table.html]
+```
+ table_sort是一个表格排序，功能还是不错滴！
+ 注意事项： 
+  1、显示小手的点击就可以排序，实现顺序和倒叙的切换
+  2、文字和数字都可以进行排序
+```
 
 
