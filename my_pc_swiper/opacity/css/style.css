@@ -1,0 +1,81 @@
+html, body, div, ul, li, img, a {
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+.focusList{
+    list-style: none;
+}
+.banner{
+    width: 800px;
+    height: 400px;
+    border:10px solid #dddddd;
+    margin:30px auto;
+    position: relative;
+    background: url("../images/bg.gif") no-repeat center center #cccccc;
+}
+
+.banner .bannerInner div{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left:0;
+    top:0;
+    z-index: 0;
+    opacity:0;
+}
+.banner .bannerInner div img{
+    width: 100%;
+    height: 100%;
+    border:none;
+    vertical-align: top;
+}
+
+.banner .focusList {
+    background-color: rgba(255, 255, 255, 0.8);
+    list-style: none;
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    z-index: 9;
+}
+
+.banner .focusList li {
+    float: left;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #000000;
+    margin: 2px 5px;
+}
+
+.banner .focusList .selected {
+    background-color: darkred;
+}
+
+.banner .left,
+.banner .right {
+    width: 30px;
+    height: 50px;
+    background: url("../images/bg.png") no-repeat;
+    position: absolute;
+    top: 50%;
+    margin-top: -25px;
+    cursor: pointer;
+    z-index: 9;
+    /*display: none;*/
+}
+
+.banner .left {
+    left: 0;
+}
+
+.banner .right {
+    right: 0;
+    background-position: -48px 0;
+}
+

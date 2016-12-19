@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="index.css"/>
+</head>
+<body>
+<div class="banner" id="banner">
+    <div class="bannerInner">
+      <!--  <div><img src="images/1.jpg" alt=""/></div>
+        <div><img src="images/3.jpg" alt=""/></div>
+        <div><img src="images/3.jpg" alt=""/></div>
+        <div><img src="images/4.jpg" alt=""/></div>-->
+
+    </div>
+    <ul class="focusList">
+       <!-- <li class="selected"></li>
+        <li></li>
+        <li></li>
+        <li></li>-->
+    </ul>
+    <a class="left" href="javascript:void 0"></a>
+    <a class="right" href="javascript:void 0"></a>
+</div>
+
+<div class="banner" id="banner2">
+    <div class="bannerInner">
+        <!--  <div><img src="images/1.jpg" alt=""/></div>
+          <div><img src="images/3.jpg" alt=""/></div>
+          <div><img src="images/3.jpg" alt=""/></div>
+          <div><img src="images/4.jpg" alt=""/></div>
+         -->
+
+    </div>
+    <ul class="focusList">
+        <!-- <li class="selected"></li>
+         <li></li>
+         <li></li>
+         <li></li>-->
+    </ul>
+    <a class="left" href="javascript:void 0"></a>
+    <a class="right" href="javascript:void 0"></a>
+</div>
+<script src="component.js"></script>
+<script src="animate_easy.js"></script>
+<script src="bannerClass.js"></script>
+<script type="text/javascript">
+    var banner = document.getElementById("banner");
+    var banner2 = document.getElementById("banner2");
+    new Carousel(banner,'data.txt');
+    new Carousel(banner2,'data.txt',4000);
+
+</script>
+</body>
+</html>
