@@ -1,0 +1,116 @@
+html, body, ul, li,input {
+    margin: 0;
+    padding: 0;
+}
+html,body{
+    width: 100%;
+    color: #000;
+    font-size: 14px;
+    font-family: '微软雅黑';
+    overflow-x: hidden;
+    -webkit-user-select: none;
+}
+ul {
+    list-style: none;
+}
+
+input {
+    outline: none;
+}
+.box{
+    width: 800px;
+    border:2px solid green;
+    margin: 20px auto;
+    padding:20px;
+    text-align: center;
+}
+.box h2{
+    height: 35px;
+    line-height: 35px;
+    font-size: 18px;
+    background: green;
+    color: #ffffff;
+
+}
+.box .con{
+    /*给ul固定一个高度*/
+    height: 300px;
+}
+.box .con li {
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+}
+.box h2 span,
+.con li span{
+    float: left;
+    width: 200px;
+    height: 100%;
+    text-align: center;
+}
+.con li:nth-child(even){
+    background-color: #ccc;
+}
+.con li:hover{
+    background-color: lightgreen;
+}
+.page{
+    display: inline-block;
+    height: 22px;
+    line-height: 22px;
+    margin-top: 10px;
+}
+.page span,.page ul,.page input,.pageNum li{
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 12px;
+    border:1px solid green;
+    margin: 0 3px;
+    cursor: pointer;
+}
+.page ul{
+    border:none;
+}
+.page span,.page input{
+    width: 45px;
+}
+.pageNum li{
+    width: 20px;
+    height: 20px;
+}
+.box2{
+    width: 200px;
+    border:2px dashed green;
+    position: absolute;
+    top:50%;
+    left:50%;
+    margin-top: -100px;
+    margin-left: -100px;
+    height: 200px;
+}
+.box2 li{
+    height: 50px;
+    line-height: 50px;
+}
+.box2 li:nth-child(even){
+    background-color: #EEEDE8;
+}
+.box2 li span{
+    display: block;
+    float: left;
+}
+.box2 li span:nth-child(1){
+    width: 100px;
+    text-align: center;
+}
+.box2 li span:nth-child(2){
+    width: 100px;
+}
+.pageNum li.cur{
+    background: green;
+    color:#fff;
+}
+
+

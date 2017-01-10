@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="box">
+    <!--//头和内容-->
+    <h2>
+        <span>编号</span>
+        <span>姓名</span>
+        <span>分数</span>
+        <span>性别</span>
+    </h2>
+    <ul class="con" id="content">
+        <li>
+            <span>1</span>
+            <span>张三</span>
+            <span>男</span>
+            <span>90</span>
+
+        </li>
+        <li>
+            <span>1</span>
+            <span>张三</span>
+            <span>男</span>
+            <span>90</span>
+
+        </li>
+    </ul>
+    <div class="page" id="page">
+        <span>FIRST</span>
+        <span>PREV</span>
+        <ul class="pageNum" id="pageNum">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+        <span>LAST</span>
+        <span>NEXT</span>
+        <input type="text" id="numberTemp" value="1">
+    </div>
+</div>
+
+<script charset="utf-8" type="text/javascript" src="js/ajax_1.0.js"></script>
+<script charset="utf-8" type="text/javascript">
+    var pageModel = (function () {
+        var content = document.getElementById('content');
+        var page = document.getElementById('page');
+        var pageNum = document.getElementById('pageNum');
+        var numberTemp = document.getElementById("numberTemp");
+
+        var n = 1,
+            total = 0,
+            data = null;
+
+        function bindHTML() {
+            var str = '';
+            for (var i = 0; i < data.length; i++) {
+                var curData = data[i];
+                str += '<li studentId="' + curData['id'] + '">';
+                str += '<span>' + curData["id"] + '</span>';
+                str += '<span>' + curData["name"] + '</span>';
+                str += '<span>' + curData["score"] + '</span>';
+                str += '<span>' + (curData["sex"] == 0 ? "男" : "女") + '</span>';
+                str += '</li>';
+            }
+            content.innerHTML = str;
+
+            //显示当前项
+            str = '';
+            for (var i = 1; i <= total; i++) {
+                str += i === n ? '<li class="cur">' + i + '</li>' : '<li>' + i + '</li>';
+            }
+
+            pageNum.innerHTML = str;
+            numberTemp.value = n;
+        }
+
+        function bindLink() {
+            var lis = content.getElementsByTagName('li');
+            for (var i = 0; i < lis.length; i++) {
+                lis[i].onclick = function () {
+                    window.location.href = "detail.html";
+                    //还要传递id到详细页面进行展示
+                    window.open('detail.html?id=' + this.getAttribute('studentId'));
+                }
+            }
+
+        }
+
+        function sendAjax() {
+            ajax({
+                url: '/getList?n=' + n,
+                type: 'get',
+                cache: false,
+                dataType: 'json',
+                success: function (result) {
+                    if (result && result.code === 0) {
+                        total = result.total;
+                        data = result.data;
+                        bindHTML();
+                        bindLink();
+                    }
+                }
+            })
+        }
+
+        function bindEvent() {
+            page.onclick = function (e) {
+                e = e || window.event;
+                var tar = e.target || e.srcElement,
+                    tarTag = tar.tagName.toUpperCase(),
+                    tarInner = tar.innerHTML;
+                if (tarTag === 'SPAN') {
+                    switch (tarInner) {
+                        case 'FIRST':
+                            if (n === 0) {
+                                return;
+                            }
+                            n = 1;
+                            break;
+                        case 'LAST':
+                            if (n === total) {
+                                return;
+                            }
+                            n = total;
+                            break;
+                        case 'PREV':
+                            if (n === 1) {
+                                return;
+                            }
+                            n--;
+                            break;
+                        case 'NEXT':
+                            if (n === total) {
+                                return;
+                            }
+                            n++;
+                            break;
+                    }
+                }
+                if (tarTag === 'LI') {
+                    if (n === parseFloat(tar.innerHTML)) {
+                        return;
+                    }
+                    n = parseFloat(tar.innerHTML);
+                }
+                if (tarTag === 'INPUT') {
+                    return;
+                }
+                //重新请求数据
+                sendAjax();
+            };
+
+            numberTemp.onkeyup = function (e) {
+                e = e || window.event;
+                if (e.keyCode === 13) {
+                    var val = parseFloat(this.value.replace(/^ +| +$/g, ''));
+                    if (isNaN(val)) {
+                        this.value = n;
+                        return;
+
+                    }
+                    val = Math.round(val);
+                    if (val < 1) {
+                        n = 1;
+                    } else if (val > total) {
+                        n = total;
+                    } else {
+                        n = val;
+                    }
+                    sendAjax();
+                }
+            }
+        }
+
+
+        function init() {
+            sendAjax();
+            bindEvent();
+        }
+
+
+        return {
+            init: init
+        }
+
+    })();
+    pageModel.init();
+
+</script>
+
+</body>
+</html>

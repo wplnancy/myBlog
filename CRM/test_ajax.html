@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script charset="utf-8" type="text/javascript" src="js/ajax.js">
+
+</script>
+<script charset="utf-8" type="text/javascript">
+    var dd=document.body;
+    ajax({
+        url:'json/custom.json',
+        success:function (data) {
+            console.log(data);
+        }
+    })
+</script>
+
+
+</body>
+</html>

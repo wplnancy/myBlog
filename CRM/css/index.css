@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    font-size: 14px;
+    color: #000;
+    overflow-x: hidden;
+}
+
+ul li {
+    list-style: none;
+}
+
+a, a:hover, a:active, a:visited, a:target {
+    color: #000;
+    text-decoration: none;
+}
+
+/*start*/
+#box {
+    width: 800px;
+    margin: 20px auto;
+    border: 2px solid green;
+}
+
+
+.link {
+    display: block;
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.link:hover {
+    color: green;
+    text-decoration: underline;
+}
+
+.w50 {
+    width: 50px;
+}
+
+
+.w150 {
+    width: 150px;
+}
+
+.w200 {
+    width: 200px;
+}
+
+.head,
+.list li {
+    height: 35px;
+    line-height: 35px;
+}
+
+.head {
+    background-color: green;
+}
+
+.head span,
+.list li span {
+    float: left;
+    height: 35px;
+    display: inline-block;
+    text-align: center;
+    color: #000;
+    font-size: 14px;
+}
+
+.head span {
+    color: #fff;
+    font-weight: bold;
+}
+
+/* 在ie6-8下不兼容*/
+
+.list li:nth-child(even) {
+    background-color: #eee;
+}
+
+.list li：hover {
+    background-color: #ffeeaa;
+}
+
+.control a {
+    display: inline-block;
+    margin: 0 5px;
+
+}
+
+input {
+    outline: none;
+    margin: 0 5px;
+    border:none;
+}
+
+#box2 {
+    width: 500px;
+    margin: 20px auto;
+    border: 2px solid green;
+}
+#box2 div{
+    height: 32px;
+    line-height: 32px;
+    margin: 10px auto;
+}
+#box2 div span{
+    display: inline-block;
+    width: 50px;
+    text-align: center;
+}
+#box2 div input{
+    width: 380px;
+    height: 30px;
+    border:1px solid #cccccc;
+    padding:0 10px;
+}
+
+#box2 div #username,
+#box2 div #userAge{
+    width: 190px;
+}
+
+#box2 .submit{
+    width: 200px;
+    margin: 20px auto;
+    height: 34px;
+    background-color: green;
+    text-align: center;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+
+
+

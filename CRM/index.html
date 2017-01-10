@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CRM</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div id="box">
+    <a href="add.html" class="link">增加新用户</a>
+    <h2 class="head">
+        <span class="w50">编号</span>
+        <span class="w150">姓名</span>
+        <span class="w50">年龄</span>
+        <span class="w200">电话</span>
+        <span class="w200">地址</span>
+        <span class="w150">操作</span>
+    </h2>
+    <ul class="list" id="list">
+        <!--        <li>
+                    <span class="w50">1</span>
+                    <span class="w150">sd</span>
+                    <span class="w50">sds</span>
+                    <span class="w200">sde</span>
+                    <span class="w200">asd</span>
+                    <span class="w150 control">
+                        <a href="">删除</a>
+                        <a href="">修改</a>
+                    </span>
+                </li>
+                <li>
+                    <span class="w50">1</span>
+                    <span class="w150">sd</span>
+                    <span class="w50">sds</span>
+                    <span class="w200">sde</span>
+                    <span class="w200">asd</span>
+                    <span class="w150 control">
+                        <a href="">删除</a>
+                        <a href="">修改</a>
+                    </span>
+                </li>-->
+    </ul>
+</div>
+<script charset="utf-8" type="text/javascript" src="js/ajax.js">
+</script>
+<script charset="utf-8" type="text/javascript">
+    //首先获取所有的客户信息，完成获取的数据绑定即可
+
+    //按照单例模式进行开发
+    var oList = document.getElementById('list');
+
+    var customModule = (function () {
+        //删除客户的信息
+        function deleteCustom() {
+            oList.onclick = function (e) {
+                e = e || window.event;
+                var tar = e.target || e.srcElement;
+                var customId = tar.getAttribute("customId");
+                var targetName = tar.tagName.toUpperCase();
+                if (targetName === 'A' && tar.innerHTML === '删除') {
+                    var flag = window.confirm("确定要删除 编号为'" + customId + "的客户吗");
+                    if (flag) {
+                        //点击的是确定按钮
+                        ajax({
+                            url: "/removeInfo?id=" + customId,
+                            success: function (jsonData) {
+                                if (jsonData && jsonData.code === 0) {
+                                    oList.removeChild(tar.parentNode.parentNode);
+                                    return;
+                                }
+                                alert(jsonData.msg);
+                            }
+
+                        })
+
+                    }
+
+
+                }
+
+            }
+
+        }
+
+        function bindHTML(data) {
+            //进行字符串的拼接
+            var str = '';
+            for (var i = 0; i < data.length; i++) {
+                var curData = data[i];
+
+                str += '<li>';
+                str += '<span class="w50">' + curData["id"] + '</span>';
+                str += '<span class="w150">' + curData["name"] + '</span>';
+                str += '<span class="w50">' + curData["age"] + '</span>';
+                str += '<span class="w200">' + curData["phone"] + '</span>';
+                str += '<span class="w200">' + curData["address"] + '</span>';
+                str += '<span class="w150 control">';
+                str += '<a href="add.html?id=' + curData["id"] + '" >修改</a>';
+                str += '<a href="javascript:;" customId="' + curData["id"] + '">删除</a>';
+                str += '</span>';
+                str += '</li >'
+            }
+            oList.innerHTML = str;
+        }
+
+        function init() {
+            ajax({
+                url: '/getList',
+                //dataType:"json",//默认的转换了
+                success: function (jsonData) {
+                    console.log(jsonData);
+                    //数据绑定
+                    if (jsonData.data && jsonData.code === 0) {
+                        var data = jsonData["data"];//data就是我们要获取的数据
+                        console.log(data);
+                        bindHTML(data);
+                        deleteCustom();
+                    }
+
+                }
+            });
+        }
+
+        return {
+            init: init
+        }
+    })();
+    customModule.init();//得到数据
+
+</script>
+
+
+</body>
+</html>

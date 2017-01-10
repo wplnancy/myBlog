@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>add</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div id="box2">
+    <div>
+        <span>姓名：</span>
+        <input type="text" id="username" name="username">
+    </div>
+    <div>
+        <span>年龄：</span>
+        <input type="text" id="userAge" name="userAge">
+    </div>
+    <div>
+        <span>电话：</span>
+        <input type="text" id="userPhone" name="userPhone">
+    </div>
+    <div>
+        <span>地址：</span>
+        <input type="text" id="userAddress" name="userAddress">
+    </div>
+    <div class="submit" id="submit">提交</div>
+</div>
+<script charset="utf-8" type="text/javascript" src="js/ajax.js">
+
+</script>
+<script charset="utf-8" type="text/javascript">
+
+    var username = document.getElementById("username");
+    var userAge = document.getElementById("userAge");
+    var userPhone = document.getElementById("userPhone");
+    var userAddress = document.getElementById("userAddress");
+    var submit = document.getElementById("submit");
+    //发送添加数据的请求  真正的表单的话要做表单验证
+
+    //如果url后面传递了id值就是修改，否则就是增加
+    //    这样的话加载页面的第一件事情就是获取url后面传递进来的id的值
+
+    //window.location.href  获取当前页面的url地址
+    //获取url地址栏的参数值
+
+    String.prototype.queryURLParameter = function () {
+        var obj = {};
+        var reg = /([^?=&]+)=([^?=&]+)/g;
+        this.replace(reg, function () {
+            var key = arguments[1];
+            var value = arguments[2];
+            obj[key] = value;
+        });
+        return obj;
+    };
+    //获取到url?参数对象
+    var urlObj = window.location.href.queryURLParameter();
+    var customId = urlObj["id"];
+    var isFlag = typeof  customId === "undefined" ? false : true;
+    //false  代表增加操作  否则是修改的操作
+
+    //    修改的话，获取用户的信息，并且增加到文本框中
+
+    if (isFlag) {
+
+        ajax({
+            url: "/getInfo?id=" + customId,
+            success: function (jsonData) {
+                if (jsonData && jsonData.code === 0) {
+                    var data = jsonData['data'];
+                    username.value = data["name"];
+                    userAge.value = data["age"];
+                    userPhone.value = data["phone"];
+                    userAddress.value = data["address"];
+                }
+
+            }
+        })
+    }
+
+    //点击提交的时候可能是增加也可能是修改
+
+    submit.onclick = function () {
+        var obj = {
+            name: username.value,
+            age: userAge.value,
+            phone: userPhone.value,
+            address: userAddress.value
+        };
+        // add info
+        // obj=JSON.stringify(obj);//ie 6-7下不兼容 字符女串的拼接
+
+        if (isFlag) {
+            obj.id = customId;
+            ajax({
+                url: "/updateInfo",
+                type: "post",
+                data: JSON.stringify(obj),
+                success: function (jsonData) {
+                    if (jsonData && jsonData.code === 0) {
+                        window.location.href = "index.html";
+                        return;
+                    }
+                    alert(jsonData.msg);
+
+                }
+            })
+
+
+        } else {
+            ajax({
+                url: "/addInfo",
+                type: "post",
+                data: JSON.stringify(obj),//传递的数据
+                success: function (jsonData) {
+
+                    if (jsonData && jsonData.code == 0) {
+                        window.location.href = "index.html";//js实现页面跳转的一种方式
+                        return;
+                    }
+                    alert(jsonData.msg);
+                }
+            });
+        }
+    }
+
+</script>
+
+</body>
+</html>
