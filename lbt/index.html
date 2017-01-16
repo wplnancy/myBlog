@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>轮播图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 100px;
+        }
+
+        html, body {
+            width: 100%;
+        }
+
+        img {
+            display: block;
+            border: none;
+        }
+
+        .banner {
+            width: 100%;
+            height: 3.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner .wrapper {
+            height: 100%;
+            position: absolute;
+            /*待会再处理*/
+            left: -100%;
+            top: 0;
+        }
+
+        .banner .slide {
+            float: left;
+            height: 3.5rem;
+            background: url('img/default.gif') no-repeat center center #ccc;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .focusList {
+            list-style: none;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 10px;
+        }
+
+        .focusList li {
+            width: 0.18rem;
+            height: 0.18rem;
+            border-radius: 50%;
+            background-color: #f4f4f4;
+            margin: .02rem .1rem;
+            float: left;
+        }
+
+        .focusList li.cur {
+            background-color: #761c19;
+        }
+    </style>
+</head>
+<body>
+
+<div class="banner">
+    <div class="wrapper">
+        <div class="slide"><img data-src="img/banner3.jpg" alt=""></div>
+        <div class="slide"><img data-src="img/banner1.jpg" alt=""></div>
+        <div class="slide"><img data-src="img/banner2.jpg" alt=""></div>
+        <div class="slide"><img data-src="img/banner3.jpg" alt=""></div>
+        <div class="slide"><img data-src="img/banner1.jpg" alt=""></div>
+    </div>
+    <div class="focusList">
+        <li class="cur"></li>
+        <li></li>
+        <li></li>
+    </div>
+</div>
+<script charset="utf-8" type="text/javascript" src="zepto.js"></script>
+<script charset="utf-8" type="text/javascript">
+    //移动端的视频适配的信息
+    ~function () {
+        var desW = 640;
+        var winW = document.documentElement.clientWidth;
+        if (winW > desW) {
+            $(".banner").css({
+                width: desW,
+                margin: "0 auto"
+            });
+            return;
+        }
+        document.documentElement.style.fontSize = winW / desW * 100 + 'px';
+    }();
+
+    var bannerRender = (function () {
+        var $banner = $('.banner'),
+            $wrapper = $('.wrapper'),
+            $slides = $('.slide'),
+            $lis = $('.focusList').children('li'),
+            count = $slides.length;
+        var winW = document.documentElement.clientWidth;
+        var step = 1;
+        var minL = -(count - 1) * winW;
+        var maxL = 0;
+        var followTimer = null;
+        var autoTimer = null;
+        var pauseTimer = null;
+
+        function autoMove() {
+            step++;
+            lazyImg();
+            $wrapper[0].style.webkitTransitionDuration = "0.2s";
+            $wrapper.css("left", -step * winW);
+            focusAlign();
+            if (step === count - 1) {
+                lazyImg();
+                window.clearTimeout(followTimer);
+                followTimer = window.setTimeout(function () {
+                    window.clearTimeout(followTimer);
+                    step = 1;
+                    $wrapper[0].style.webkitTransitionDuration = "0s";
+                    $wrapper.css('left', -step * winW);
+                }, 200);
+            }
+        }
+
+
+        function lazyImg() {
+            var $cur = $slides.eq(step),
+                $tar = $cur.add($cur.prev()).add($cur.next());
+            $tar.each(function (index, item) {
+                var $img = $(item).children('img');
+                if ($img.attr('isLoad') === 'true') {
+                    return;
+                }
+                var oImg = new Image();
+                oImg.src = $img.attr('data-src');
+                oImg.onload = function () {
+                    $img.prop('src', this.src).attr('isLoad', true);
+                    oImg = null;
+                }
+            });
+        }
+
+        //焦点对齐的方法
+        function focusAlign() {
+            var temp = step;
+            temp === 0 ? temp = count - 1 : null;
+            temp == count - 1 ? temp = 1 : null;
+            $lis.eq(temp - 1).addClass("cur").siblings().removeClass("cur");
+        }
+
+
+        //定义公共的方法
+        function isSwipe(strX, strY, endX, endY) {
+            return Math.abs(strX - endX) > 10 || Math.abs(strY - endY) > 10;
+        }
+
+        function swipeDir(strX, strY, endX, endY) {
+            return Math.abs(strX - endX) > Math.abs(strY - endY) ? (strX > endX ? 'left' : 'right') : (strY - endY > 0 ? 'up' : 'down');
+        }
+
+        function dragstart(e) {
+            //触摸的时候结束自动轮播
+            window.clearInterval(autoTimer);
+            window.clearTimeout(pauseTimer);
+            var point = e.changedTouches[0];
+            $wrapper.attr({
+                strL: $wrapper.css('left'),
+                strX: point.clientX,
+                strY: point.clientY,
+                changeX: null,
+                isMove: null,
+                dir: null
+            });
+        }
+
+        function draging(e) {
+            var point = e.changedTouches[0],
+                strX = $wrapper.attr('strX'),
+                strY = $wrapper.attr('strY'),
+                endX = point.clientX,
+                endY = point.clientY,
+                strL = $wrapper.attr('strL'),
+                changeX = endX - strX;
+            var dir = swipeDir(strX, strY, endX, endY);
+
+            if (isSwipe(strX, strY, endX, endY) && /^(right|left)$/i.test(dir)) {
+                //改变里面的参数
+                $wrapper.attr({
+                    isMove: true,
+                    dir: dir,
+                    changeX: changeX
+                });
+                var curL = strL + changeX;
+                curL = curL > maxL ? maxL : curL < minL ? minL : curL;
+                $wrapper[0].style.webkitTransitionDuration = '0s';
+                $wrapper.css("left", curL);
+            }
+        }
+
+        function dragend() {
+            var dir = $wrapper.attr("dir"),
+                changeX = $wrapper.attr("changeX"),
+                isMove = $wrapper.attr("isMove");
+            if (isMove && /^(right|left)$/i.test(dir)) {
+                if (Math.abs(changeX) > winW / 2) {
+                    if (dir === "left") {
+                        step++;
+                    } else {
+                        step--;
+                    }
+                    $wrapper[0].style.webkitTransitionDuration = '.2s';
+                    $wrapper.css({
+                        left: -step * winW
+                    });
+                    focusAlign();
+
+                    //只要step改变了，就要执行图片的延迟加载
+                    lazyImg();
+                    window.clearTimeout(followTimer);
+                    followTimer = window.setTimeout(function () {
+                        if (step == 0 || step == count - 1) {
+                            $wrapper[0].style.webkitTransitionDuration = '0s';
+                            step = step === 0 ? count - 2 : 1;
+                            $wrapper.css({
+                                left: -step * winW
+                            });
+                            focusAlign();
+                            lazyImg();
+                            window.clearTimeout(followTimer);
+                        }
+                    }, 200);
+                }
+            }
+
+            //->滑动结束延迟一段时间在开启自动轮播
+            pauseTimer = window.setTimeout(function () {
+                autoTimer = window.setInterval(autoMove, 2000);
+                window.clearTimeout(pauseTimer);
+            }, 2000);
+
+            //->把设置的自定义属性置为空
+            $(this).attr({
+                strX: null,
+                strY: null,
+                strL: null,
+                changeX: null,
+                isMove: null,
+                dir: null
+            });
+            window.clearTimeout(pauseTimer);
+            pauseTimer = window.setTimeout(function () {
+                autoTimer = window.setInterval(autoMove, 2000);
+                window.clearTimeout(pauseTimer);
+            }, 2000);
+        }
+
+        //实现自动轮播
+
+
+        return {
+            init: function () {
+                $slides.css("width", winW);
+                $wrapper.css("width", count * winW);
+                //图片的延迟加载
+                lazyImg();
+                //左右轮播图的切换
+                $banner.on('touchstart', dragstart).on('touchmove', draging).on("touchend", dragend);
+                autoTimer = window.setInterval(autoMove, 5000);
+            }
+        }
+    })();
+    bannerRender.init();
+</script>
+
+</body>
+</html>
