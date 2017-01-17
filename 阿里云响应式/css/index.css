@@ -1,0 +1,309 @@
+.header {
+    width: 100%;
+    height: 638px;
+}
+
+.header nav {
+    width: 100%;
+    height: 83px;
+    background: rgba(0, 0, 0, .5);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.header .navCon {
+    width: 100%;
+    height: 100%;
+}
+
+.header .navCon h1 {
+    float: left;
+    padding-top: 24px;
+
+}
+.header .navCon h1 a{
+    display: block;
+    width: 325px;
+    height: 33px;
+    background: url("../images/logo1.png") no-repeat;
+}
+
+.header .navCon ul {
+    float: right;
+    line-height: 83px;
+    font-size: 16px;
+}
+
+.header .navCon ul li {
+    float: left;
+    margin: 0 25px;
+}
+
+.header .navCon ul li a {
+    color: #fff;
+
+
+}
+
+
+
+.banner {
+    height: 100%;
+    position: relative;
+}
+
+.slide1, .slide2 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+
+.slide1 {
+    background-image: url("../images/banner1.jpg");
+}
+
+.slide2 {
+    background-image: url("../images/banner2.jpg");
+}
+
+.channel {
+    padding: 40px 0;
+}
+
+.channel ul {
+    text-align: center;
+}
+
+.channel ul li {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.channel ul li span {
+    display: block;
+    font-size: 16px;
+}
+
+.start {
+    width: 100%;
+    height: 751px;
+    position: relative;
+}
+
+.startBg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url("../images/slide-view.jpg")  center top;
+}
+
+.start ul {
+    position: absolute;
+    bottom: 85px;
+    text-align: center;
+    width: 100%;
+  
+}
+
+.start ul li {
+    width: 90px;
+    height: 90px;
+    display: inline-block;
+    line-height: 90px;
+    text-align: center;
+    margin: 0 10px;
+}
+
+
+.start ul li a {
+    background: #fff;
+    border-radius: 50%;
+
+    display: block;
+    font-size: 16px;
+    color: #000;
+    box-shadow: 0 0 0 0 rgba(0, 204, 153, .5);
+}
+
+
+.start ul li a:hover {
+    color: #fff;
+    background-color: rgba(0, 204, 153, .5);
+    box-shadow: 0 0 0 30px transparent;
+    -webkit-transition: box-shadow 1s;
+    -moz-transition: box-shadow 1s;
+    -ms-transition: box-shadow 1s;
+    -o-transition: box-shadow 1s;
+    transition: box-shadow 1s;
+
+}
+.service{
+    padding: 40px 0;
+    background: #f0f0f0;
+
+}
+.service ul{
+    text-align: center;
+}
+.service ul li{
+    width: 263px;
+    display: inline-block;
+    border:1px solid #fff;
+}
+.service ul li  h4{
+    font-size: 18px;
+    padding:10px 0;
+}
+.service ul li  p{
+    font-size: 14px;
+    text-align: left;
+    padding: 0  10px 10px 10px;
+}
+
+@media screen and (min-width: 1000px) {
+    /*屏幕宽度>=1000px*/
+    .header .navCon {
+        width: 1000px;
+        margin: 0 auto;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .header{
+        height:465px ;
+    }
+    .navCon ul li{
+        margin: 0 15px;
+    }
+    .header .navCon h1 a{
+        width: 135px;
+        background: url("../images/logo2.png") no-repeat left top ;
+        -webkit-background-size: 272px 100%;
+        background-size: 272px 100%;
+
+    }
+    .slide1, .slide2 {
+        -webkit-background-size:1399px  465px;
+        background-size:1399px 465px;
+        /*背景图片的大小是通过 background-size背景图片的大下*/
+    }
+    .start{
+        height: 465px;
+    }
+
+    .channel ul li {
+        max-width: 16%;
+        /*如果图片的宽度大于16%，则显示16%  小于：  自身的宽度*/
+    }
+
+    /*强制让所有的图片*/
+    .channel ul li  img{
+        width: 100px;
+    }
+    .channel ul li.pic1 img{
+        max-width: 80px;
+    }
+    .channel ul li.pic2 img,.channel ul li.pic3 img{
+        max-width: 50px;
+    }
+    .startBg{
+        -webkit-background-size: 1399px 465px;
+        background-size: 1399px 465px;
+    }
+    .service ul li{
+        width: 30%;
+        vertical-align: top;
+    }
+    .service ul li img{
+        width: 100%;
+    }
+    .service ul li h4{
+        font-size: 16px;
+    }
+    .service ul li p{
+        font-size: 12px;
+    }
+}
+/*次断点、*/
+@media screen and (max-width: 604px){
+    .header .navCon ul li{
+        margin: 0 6px;
+    }
+}
+
+@media screen and (max-width:480px){
+    .header{
+        height: 300px;
+    }
+    .slide1,.slide2{
+        -webkit-background-size: 902px 300px;
+        background-size: 902px 300px;
+    }
+    .header .nav{
+        height: 50px;
+        background: red;
+    }
+    .header .navCon h1 {
+        padding-top: 10px;
+    }
+    .navCon ul{
+        width: 100%;
+        line-height: 40px;
+        background: red;
+        display: none;
+    }
+    .header ul li{
+        float: none;
+    }
+    .channel ul li{
+       /* width: 35%;*/
+        margin: 0;
+        width: 45%;
+        max-width:100%;
+    }
+    .start ul li{
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
+    .start ul li a{
+        font-size: 14px;
+    }
+    .start{
+        height: 300px;
+    }
+    .startBg{
+        -webkit-background-size: 902px 300px;
+        background-size: 902px 300px;
+    }
+    .service ul li{
+        width: 90%;
+        margin: 0 5%;
+        background: none;
+        border: none;
+    }
+    .service ul li img{
+        width: 20px;
+        height: 20px;
+        float: left;
+        margin: 10px 5px 0 0;
+
+
+    }
+    .service ul li h4{
+        text-align: left;
+        font-size: 12px;
+    }
+
+}
+
+
+
+
+
+

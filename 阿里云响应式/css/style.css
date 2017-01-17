@@ -1,0 +1,112 @@
+/*@color:red;
+#div1{
+  width: 200px;
+  height: 200px;
+  background: @color;
+  &:hover{/!*&����ǩ*!/
+    width: 400px;
+    height: 400px;
+    opacity: 0.5;
+    .transition(all,1s,ease,0s);
+  }
+}
+.transition(@property,@duration,@timing-function,@delay){
+  -webkit-transition:@arguments;
+  -moz-transition:@arguments;
+  -ms-transition:@arguments;
+  -o-transition:@arguments;
+  transition:@arguments;
+}*/
+#div1 {
+  font-size: 16px;
+  red: red;
+  background-red: green;
+  background-image: url("../images/a.png");
+}
+.box {
+  font-weight: bold;
+}
+/*.public(){ //����ѡ����������ʽ����֮�󲻻���CSS����ʾ����
+  width: 100px;
+  height: 100px;
+}
+
+.nav ul{
+  .public;
+  font-size: 14px;
+}*/
+/*ͨ��extend�������ø���ѡ�������ô���*/
+.public,
+.nav ul {
+  width: 100px;
+  height: 100px;
+}
+/*
+.nav ul{
+  &:extend(.public);
+}*/
+.nav ul {
+  font-size: 15px;
+}
+.box {
+  width: 100px;
+  height: 100px;
+}
+.box img {
+  width: 100%;
+  height: 100%;
+}
+.box .gray {
+  color: green;
+}
+.box2 {
+  color: green;
+}
+.box4 {
+  /*�Զ���result����������ֵ����*/
+  padding: 15px;
+}
+.box5 {
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.box3 {
+  -webkit-transition: all 2s ease 0s;
+  -moz-transition: all 2s ease 0s;
+  -ms-transition: all 2s ease 0s;
+  -o-transition: all 2s ease 0s;
+  transition: all 2s ease 0s;
+}
+#div1 {
+  background: green;
+}
+/*&�൱��if������������������ת�� */
+.box {
+  color: white;
+}
+/*ѭ��*/
+.a-1 {
+  width: 25%;
+}
+.a-2 {
+  width: 50%;
+}
+.a-3 {
+  width: 75%;
+}
+.a-4 {
+  width: 100%;
+}
+/*�ϲ�*/
+.box22 {
+  box-shadow: 1px 2px 3px #ccc, 2px 2px 3px red;
+}
+.aa {
+  transform: rotate(45deg);
+}
+.b {
+  transform: rotate(45deg) translate(100px);
+}

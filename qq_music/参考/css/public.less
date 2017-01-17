@@ -1,0 +1,8 @@
+@color-white: #FFF;
+@color-gray: rgba(255, 255, 255, .5);
+@color-green: #31C27C;
+
+.transitionFn(@property:all,@duration:1s,@time-function:linear,@delay:0s) {
+  -webkit-transition: @arguments;
+  transition: @arguments;
+}

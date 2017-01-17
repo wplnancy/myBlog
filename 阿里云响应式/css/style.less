@@ -1,0 +1,161 @@
+/*@color:red;
+#div1{
+  width: 200px;
+  height: 200px;
+  background: @color;
+  &:hover{/!*&父标签*!/
+    width: 400px;
+    height: 400px;
+    opacity: 0.5;
+    .transition(all,1s,ease,0s);
+  }
+}
+.transition(@property,@duration,@timing-function,@delay){
+  -webkit-transition:@arguments;
+  -moz-transition:@arguments;
+  -ms-transition:@arguments;
+  -o-transition:@arguments;
+  transition:@arguments;
+}*/
+
+@fontSize:16px;
+@color:color;
+@url:"../images";
+@box:box;
+#div1{
+  font-size: @fontSize;
+  @{color}:red;
+  background-@{color}:green;
+  background-image:url("@{url}/a.png") ;
+}
+.@{box}{
+  font-weight: bold;
+}
+
+/*.public(){ //这个选择器里的样式编译之后不会在CSS中显示出来
+  width: 100px;
+  height: 100px;
+}
+
+.nav ul{
+  .public;
+  font-size: 14px;
+}*/
+/*通过extend，可以让各个选择器共用代码*/
+
+.public{
+  width: 100px;
+  height: 100px;
+}
+
+/*
+.nav ul{
+  &:extend(.public);
+}*/
+
+.nav ul:extend(.public){
+  font-size: 15px;
+}
+@color:red;
+.box{
+  width: 100px;
+  height: 100px;
+  @color:green;
+  img{
+    width: 100%;
+    height: 100%;
+  }
+  .gray{
+    color: @color
+  }
+}
+.box2{
+  .box>.gray
+}
+
+.transition(@property:all,@duration:1s,@timing-function:ease,@delay:0s){
+  -webkit-transition:@property @duration @timing-function @delay;
+  -moz-transition:@property @duration @timing-function @delay;
+  -ms-transition:@property @duration @timing-function @delay;
+  -o-transition:@property @duration @timing-function @delay;
+  transition:@property @duration @timing-function @delay
+}
+.box-shadow(@x:0,@y:0,@blur:0,@spread:0,@color:#000){
+  -webkit-box-shadow: @arguments;
+  -moz-box-shadow: @arguments;
+  -ms-box-shadow: @arguments;
+  -o-box-shadow: @arguments;
+  box-shadow: @arguments;
+}
+.average(@x,@y){
+  @result : @x+@y;
+}
+.box4{
+  .average(10,5);/*自动把result这个变量的值返回*/
+  padding:unit(@result,px);
+}
+
+.css3(@k,@v){
+  -o-@{k}:@v;
+  -ms-@{k}:@v;
+  -moz-@{k}:@v;
+  -webkit-@{k}:@v;
+  @{k}:@v;
+}
+
+.box5{
+  .css3(transform,rotate(45deg))
+}
+
+.box3{
+  .transition(@duration: 2s);
+}
+
+.minix (@a) when (@a<0){
+  background: black;
+}
+.minix (@a) when (@a>10){
+  background: red;
+}
+.minix (@a) when (@a>0) and (@a<10){
+  background: green;
+}
+#div1{
+  .minix(5);
+}
+
+//->LESS代码:这里的意思是如果为true,.box的文字颜色才是白色
+@my-option: true;
+& when (@my-option = true) {/*&相当于if，不会进行数据类型转换 */
+  .box {
+    color: white;
+  }
+}
+/*循环*/
+.colums(@n,@i:1) when (@i<=@n){
+  .a-@{i}{
+    width:@i*100%/@n;
+  }
+  .colums(@n,@i+1);
+}
+.colums(4);
+
+/*合并*/
+.mixin2() {
+  box-shadow+:1px 2px 3px #ccc;
+}
+.box22{
+  .mixin2;
+  box-shadow+:2px 2px 3px red; ;
+}
+
+.aa{
+  transform+_: rotate(45deg);
+}
+.b{
+  .aa;
+  transform+_: translate(100px);
+}
+
+
+
