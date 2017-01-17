@@ -1,0 +1,643 @@
+/*reference:只是把对应文件中的变量或者方法引入使用,最后编译的时候不编译*/
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+button,
+input,
+textarea,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-style: normal;
+  font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+}
+ul,
+ol {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  background-color: transparent;
+}
+a:hover,
+a:active {
+  outline-width: 0;
+  text-decoration: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+hr {
+  border: 0;
+  height: 1px;
+}
+img {
+  border-style: none;
+}
+img:not([src]) {
+  display: none;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+html {
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: 100%;
+}
+input,
+textarea,
+button,
+a {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+audio:not([controls]),
+video:not([controls]) {
+  display: none;
+  height: 0;
+}
+progress {
+  vertical-align: baseline;
+}
+mark {
+  background-color: #ff0;
+  color: #000;
+}
+sub,
+sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+sub {
+  bottom: -0.25em;
+}
+sup {
+  top: -0.5em;
+}
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+  outline: 0;
+}
+button,
+input {
+  overflow: visible;
+}
+button,
+select {
+  text-transform: none;
+}
+textarea {
+  overflow: auto;
+}
+button,
+html [type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+[type="search"] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+::-webkit-input-placeholder {
+  color: inherit;
+  opacity: 0.54;
+}
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+.clear:after {
+  display: block;
+  height: 0;
+  content: "";
+  clear: both;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background: #F4F4F4;
+  overflow: hidden;
+}
+/*--HEADER--*/
+/*
+ * LESS中会提供一些常用的方法
+ *   darken([color value],xxx%)：把之前的颜色加深
+ *   lighten([color value],xxx%)：把之前的颜色变浅
+ *   unit([value],[单位])：给一个值加单位，但是这个值之前有单位，则为去单位
+ */
+.header {
+  height: 63px;
+  background: #FFF;
+  border-bottom: 1px solid #d5d5d5;
+}
+.header .content {
+  margin: 0 auto;
+  padding: 0 10px;
+  width: 1020px;
+  /*&:after {
+      /!*.content:after*!/
+      display: block;
+      content: '';
+      clear: both;
+    }*/
+  /*--LOGO--*/
+  /*--NAV--*/
+  /*--LOGIN--*/
+}
+.header .content .logo {
+  float: left;
+  margin-right: 60px;
+  width: 160px;
+  height: 63px;
+}
+.header .content .logo a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url("../img/kbs-logo.png") no-repeat center center;
+  font-size: 0;
+}
+.header .content .nav {
+  float: left;
+}
+.header .content .nav li {
+  float: left;
+}
+.header .content .nav li a {
+  display: block;
+  width: 90px;
+  height: 59px;
+  line-height: 59px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #555;
+  border-top: 4px solid transparent;
+}
+.header .content .nav li a.bg {
+  color: #FFF;
+  background: #346AFF;
+}
+.header .content .nav li a:hover {
+  border-top-color: #346AFF;
+}
+.header .content .nav li a.liveQQ {
+  border-top: none;
+  width: 63px;
+  height: 63px;
+}
+.header .content .nav li a.liveQQ img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.header .content .nav li a.downLoad {
+  position: relative;
+}
+.header .content .nav li a.downLoad .weChat {
+  position: absolute;
+  top: 59px;
+  left: -15px;
+  z-index: 9999;
+  padding: 0 14px;
+  width: 92px;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition: all 0.3s linear 0s;
+  -moz-transition: all 0.3s linear 0s;
+  -ms-transition: all 0.3s linear 0s;
+  -o-transition: all 0.3s linear 0s;
+  transition: all 0.3s linear 0s;
+  /*
+               让背景颜色变为半透明:
+                 ->rgba(255,255,255,0.5); 不兼容低版本浏览器(CSS3)
+                 ->opacity: 0.5; 可以实现效果,但是当前容器里面的子元素也都透明了
+                 ->给当前元素追加一个和容器一样大的层，追加的这个层有半透明的背景
+              */
+}
+.header .content .nav li a.downLoad .weChat:after {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9997;
+  width: 100%;
+  height: 100%;
+  background: #FFF;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.header .content .nav li a.downLoad .weChat img {
+  position: relative;
+  z-index: 9998;
+  display: block;
+  width: 92px;
+  height: 92px;
+}
+.header .content .nav li a.downLoad .weChat span {
+  position: relative;
+  z-index: 9998;
+  display: block;
+  line-height: 25px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: normal;
+  color: #555;
+}
+.header .content .nav li a.downLoad:hover .weChat {
+  padding: 18px 14px;
+  height: 142px;
+}
+.header .content .login {
+  float: right;
+  margin-top: 17.5px;
+  width: 46px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  font-size: 12px;
+  color: #FFF;
+  background: #346AFF;
+  border-radius: 3px;
+}
+.header .content .login:hover {
+  background: #0145ff;
+}
+/*--MAIN--*/
+.main {
+  margin: 20px auto;
+  width: 1040px;
+  height: auto;
+  /*--MENU NAV--*/
+  /*--CON--*/
+}
+.main .menuNav {
+  position: relative;
+  float: left;
+  width: 198px;
+  height: auto;
+  background: #FFF;
+  border: 1px solid #EEE;
+  overflow: hidden;
+  /*ul {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }*/
+}
+.main .menuNav a {
+  position: relative;
+  display: block;
+  padding-left: 24px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  color: #555;
+  border-left: 4px solid transparent;
+}
+.main .menuNav a:hover,
+.main .menuNav a.bg {
+  color: #346AFF;
+  background: #EFF3FF;
+  border-left-color: #346AFF;
+}
+.main .menuNav a.bg .arrow {
+  display: block;
+}
+.main .menuNav a .arrow {
+  display: none;
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  margin-top: -6px;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  border: 6px solid transparent;
+  border-left-color: #346AFF;
+}
+.main .menuNav a .arrow:after {
+  display: none;
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  margin-top: -6px;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  border: 6px solid transparent;
+  border-left-color: #346AFF;
+  display: block;
+  content: '';
+  right: -4px;
+  border-left-color: #EFF3FF;
+}
+.main .con {
+  float: right;
+  width: 820px;
+  height: 100%;
+}
+/*--CALENDAR--*/
+.calendar {
+  position: relative;
+  height: 80px;
+  background: #FFF;
+  border: 1px solid #EEE;
+  /*--按钮--*/
+  /*--内容--*/
+}
+.calendar .btn {
+  position: absolute;
+  top: 0;
+  width: 24px;
+  height: 80px;
+}
+.calendar .btn .arrow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -9px;
+  margin-left: -9px;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  border: 9px solid transparent;
+}
+.calendar .btn .arrow:after {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -9px;
+  margin-left: -9px;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  border: 9px solid transparent;
+}
+.calendar .btn.btnLeft {
+  left: 0;
+}
+.calendar .btn.btnLeft .arrow {
+  margin-left: -13.5px;
+  border-right-color: #999;
+}
+.calendar .btn.btnLeft .arrow:after {
+  margin-left: -7px;
+  border-right-color: #FFF;
+}
+.calendar .btn.btnRight {
+  right: 0;
+}
+.calendar .btn.btnRight .arrow {
+  margin-left: -4.5px;
+  border-left-color: #999;
+}
+.calendar .btn.btnRight .arrow:after {
+  margin-left: -11px;
+  border-left-color: #FFF;
+}
+.calendar .btn:hover.btnLeft .arrow {
+  border-right-color: #346AFF;
+}
+.calendar .btn:hover.btnRight .arrow {
+  border-left-color: #346AFF;
+}
+.calendar .container {
+  position: relative;
+  margin: 0 24px;
+  height: 80px;
+  overflow: hidden;
+}
+.calendar .container .wrapper {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 10000px;
+  height: 70px;
+}
+.calendar .container .wrapper li {
+  float: left;
+}
+.calendar .container .wrapper li a {
+  display: block;
+  padding-top: 9px;
+  width: 110px;
+  height: 61px;
+}
+.calendar .container .wrapper li a span {
+  display: block;
+  line-height: 27px;
+  text-align: center;
+  color: #555;
+  font-size: 16px;
+}
+.calendar .container .wrapper li a span.week {
+  color: #a2a2a2;
+}
+.calendar .container .wrapper li a:hover,
+.calendar .container .wrapper li a.bg {
+  background: #EFF3FF;
+}
+.calendar .container .wrapper li a:hover span,
+.calendar .container .wrapper li a.bg span {
+  color: #346AFF;
+}
+.calendar .container .wrapper li a:hover span.week,
+.calendar .container .wrapper li a.bg span.week {
+  color: #346AFF;
+}
+/*--ISCROLL--*/
+.iScrollIndicator {
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+}
+/*MATCH*/
+.matchList {
+  position: relative;
+  overflow: hidden;
+  background-color: #FFF;
+  margin: 10px 0;
+}
+.matchList .matchList-demo h2 {
+  height: 45px;
+  line-height: 45px;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 10px 0 10px 15px;
+  background-color: #FFF;
+}
+.matchList .matchList-demo ul li {
+  height: 80px;
+  color: #515151;
+  border-top: 1px solid #EEE;
+  cursor: pointer;
+  width: 100%;
+}
+.matchList .matchList-demo ul li:hover {
+  background-color: #EEE;
+}
+.matchList .matchList-demo ul li .demo-left,
+.matchList .matchList-demo ul li .demo-center {
+  float: left;
+}
+.matchList .matchList-demo ul li .demo-right {
+  float: right;
+}
+.matchList .matchList-demo ul li .demo-left {
+  width: 238px;
+}
+.matchList .matchList-demo ul li .demo-left span {
+  display: block;
+  float: left;
+  height: 80px;
+  line-height: 80px;
+}
+.matchList .matchList-demo ul li .demo-left .startTime {
+  padding-left: 18px;
+  width: 80px;
+}
+.matchList .matchList-demo ul li .demo-left .matchTitle {
+  width: 140px;
+  color: #a0a0a0;
+  font-size: 13px;
+}
+.matchList .matchList-demo ul li .demo-center {
+  width: 370px;
+  height: 80px;
+}
+.matchList .matchList-demo ul li .demo-center div {
+  float: left;
+  width: 145px;
+}
+.matchList .matchList-demo ul li .demo-center .score {
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+  color: #1b87e2;
+  font-size: 20px;
+}
+.matchList .matchList-demo ul li .demo-center .away {
+  float: right;
+  text-align: right;
+}
+.matchList .matchList-demo ul li .demo-center .home img,
+.matchList .matchList-demo ul li .demo-center .away img,
+.matchList .matchList-demo ul li .demo-center .home span {
+  display: inline-block;
+}
+.matchList .matchList-demo ul li .demo-center img {
+  padding-top: 17px;
+  width: 48px;
+  height: 46px;
+}
+.matchList .matchList-demo ul li .demo-center span {
+  height: 80px;
+  line-height: 80px;
+  font-size: 16px;
+  vertical-align: top;
+}
+.matchList .matchList-demo ul li .demo-center span:hover {
+  color: #1c90f2;
+}
+.matchList .matchList-demo ul li .demo-right {
+  padding-top: 15px;
+  width: 125px;
+  height: 65px;
+}
+.matchList .matchList-demo ul li .demo-right a {
+  display: block;
+  margin-left: 20px;
+  height: 20px;
+  line-height: 20px;
+  color: #1c90f2;
+  font-size: 13px;
+  text-align: center;
+}
+.matchList .matchList-demo ul li .demo-right a:hover {
+  text-decoration: underline;
+}
+.matchList .matchList-demo ul li .demo-right .videoList {
+  background: url("http://mat1.gtimg.com/sports/kbsweb/statics/video_post_game_3128c9.png") no-repeat left center;
+}
+.matchList .matchList-demo ul li .demo-right .matchVideo {
+  margin-top: 10px;
+  background: url("http://mat1.gtimg.com/sports/kbsweb/statics/video_post_playback_4b7dc5.png") no-repeat left center;
+}
