@@ -7,7 +7,8 @@
 
 * 2 移动端的轮播图的实现--zepto.js
 ***
-[点击访问][https://wplnancy.github.io/myBlog/lbt/lbt/]
+[点击访问][https://wplnancy.github.io/myBlog/lbt/index.html]
+
 
 * 3 表格排序
 ***
